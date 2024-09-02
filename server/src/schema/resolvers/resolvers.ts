@@ -1,16 +1,19 @@
 // src/schema/resolvers/index.ts
 
 import userResolvers from "./userResolvers";
-// import other resolvers here
+import recipeResolvers from "./recipeResolvers";
+import ingredientResolvers from "./ingredientResopvers";
 
 const resolvers = {
   Query: {
     ...userResolvers.Query,
-    // ...other resolvers.Query
+    ...recipeResolvers.Query,
+    ...ingredientResolvers.Query,
   },
   Mutation: {
     ...userResolvers.Mutation,
-    // ...other resolvers.Mutation
+    ...recipeResolvers.Mutation,
+    ...ingredientResolvers.Mutation,
   },
 };
 
