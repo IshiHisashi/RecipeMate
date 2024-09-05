@@ -7,7 +7,6 @@ import { typeDefs } from "./schema/typeDefs";
 import resolvers from "./schema/resolvers/resolvers";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { any } from "webidl-conversions";
 
 dotenv.config({ path: "../config.env" });
 
@@ -16,7 +15,11 @@ const startServer = async () => {
   const PORT = process.env.PORT || 5500;
 
   // Middleware
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
   app.use(express.json());
 
   // Connect to Database
