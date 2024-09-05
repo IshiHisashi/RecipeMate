@@ -13,10 +13,10 @@ import TypeOfMeal from "../components/findRecipe/TypeOfMeal";
 import TimeRange from "../components/findRecipe/TimeRange";
 import Btn from "../components/Btn";
 import OpenAI from "openai";
-import { EXPO_PUBLIC_OPENAI_API_KEY } from "@env";
+import { EXPO_OPENAI_API_KEY } from "@env";
 
 const openai = new OpenAI({
-  apiKey: EXPO_PUBLIC_OPENAI_API_KEY,
+  apiKey: `${EXPO_OPENAI_API_KEY}`,
 });
 
 // COMPNENT
