@@ -1,7 +1,8 @@
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import FindRecipeScreen from "./screens/FindRecipeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import FindRecipeNavigation from "screens/FindRecipeNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -44,10 +45,9 @@ export default function App() {
         />
         <Tab.Screen
           name="FindRecipe"
-          component={FindRecipeNavigation}
+          component={FindRecipeScreen}
           options={{
-            headerShown: false,
-            // headerTitle: "Find Recipe",
+            headerTitle: "Find Recipe",
             tabBarLabel: "Find Recipe",
           }}
         />
@@ -63,3 +63,12 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "hotpink",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
