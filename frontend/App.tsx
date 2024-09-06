@@ -1,7 +1,7 @@
 import HomeScreen from "./screens/HomeScreen";
 import FindRecipeScreen from "./screens/FindRecipeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import FindRecipeNavigation from "screens/FindRecipeNavigator";
+import FindRecipeNavigation from "./screens/FindRecipeNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
