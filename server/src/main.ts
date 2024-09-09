@@ -8,7 +8,7 @@ import resolvers from "./schema/resolvers/resolvers";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "../config.env" });
+dotenv.config({ path: "./config.env" });
 
 const startServer = async () => {
   const app = express();
