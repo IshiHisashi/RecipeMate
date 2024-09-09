@@ -88,7 +88,7 @@ const recipeResolvers = {
         id: string;
       }
     ): Promise<string> => {
-      await Recipe.findByIdAndUpdate(id);
+      await Recipe.findByIdAndDelete(id);
       return "Recipe deleted successfully";
     },
   },

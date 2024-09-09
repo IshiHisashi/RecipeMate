@@ -22,7 +22,7 @@ interface Recipe {
   dateTaken: string;
 }
 
-// console.log(GRAPHURL);
+console.log(GRAPHURL);
 
 function HomeScreen() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -69,7 +69,7 @@ function HomeScreen() {
 
   useEffect(() => {
     fetchRecipes();
-  }, []);
+  }, [recipes]);
 
   // modal
   const openModal = (recipe: Recipe) => {
@@ -80,6 +80,34 @@ function HomeScreen() {
   const closeModal = () => {
     setSelectedRecipe(null);
     setModalVisible(false);
+  };
+
+  // Delete
+  const handleDelete = async (id: string) => {
+    const deleteRecipeMutation = `
+    mutation deleteRecipe($deleteRecipeId: ID!) {
+      deleteRecipe(id: $deleteRecipeId)
+    }
+  `;
+    try {
+      const response = await axios({
+        url: `${GRAPHURL}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          query: deleteRecipeMutation,
+          variables: {
+            deleteRecipeId: id,
+          },
+        },
+      });
+      console.log("deleted", response.data);
+      closeModal();
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 
   return (
@@ -150,6 +178,14 @@ function HomeScreen() {
                 >
                   <Text className="text-blue-600 text-center font-bold">
                     Close
+                  </Text>
+                </Pressable>
+                <Pressable
+                  className=" border border-blue-400 mt-6 rounded-[12px] bg-white p-4 w-[50%]"
+                  onPress={() => handleDelete(selectedRecipe.id)}
+                >
+                  <Text className="text-blue-400 text-center font-bold">
+                    Delete
                   </Text>
                 </Pressable>
               </View>
