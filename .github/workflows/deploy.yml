@@ -1,0 +1,34 @@
+name: Deploy Server to EC2
+
+on:
+  push:
+    branches:
+      - development # or master, if your default branch is master
+    paths:
+      - "server/**" # Trigger only if changes are made in the server directory
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up SSH access
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+
+      # Step 3: Deploy the code to EC2
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@{{ secrets.EC2_IP_ADDRESS }} << 'EOF'
+            cd ~/recipemate/server   
+            git pull origin development     
+            npm install               
+            pm2 restart backend       
+            exit
+          EOF
