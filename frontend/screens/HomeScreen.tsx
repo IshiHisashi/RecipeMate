@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, Modal } from "react-native";
 import axios from "axios";
 import Title from "../components/Title";
-import { GRAPHURL } from "@env";
+import { GRAPHURL, GRAPHURLLOCAL } from "@env";
 
 interface Ingredient {
   id: string;
@@ -22,7 +22,7 @@ interface Recipe {
   dateTaken: string;
 }
 
-console.log(GRAPHURL);
+// console.log(GRAPHURL);
 
 function HomeScreen() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -62,14 +62,14 @@ function HomeScreen() {
     } catch (err: any) {
       console.error(
         "Error fetching recipes:",
-        err.response?.data || "b" + err.message
+        err.response?.data || err.message
       );
     }
   };
 
   useEffect(() => {
     fetchRecipes();
-  }, [recipes]);
+  }, []);
 
   // modal
   const openModal = (recipe: Recipe) => {
@@ -105,7 +105,7 @@ function HomeScreen() {
       });
       console.log("deleted", response.data);
       closeModal();
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.response.data);
     }
   };
