@@ -1,3 +1,4 @@
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import FindRecipeScreen from "./FindRecipeScreen";
 import RecommendScreen from "./RecommendScreen";

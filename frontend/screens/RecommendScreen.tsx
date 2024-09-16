@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { View, Text, Pressable, Modal } from "react-native";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import Title from "../components/Title";
-import Ingredient from "components/findRecipe/Ingredient";
+import Ingredient from "../components/findRecipe/Ingredient";
 import axios from "axios";
-// import { fetchGraphQL } from "../utils/fetchGraphQL";
+import { GRAPHURL } from "@env";
 
 interface Ingredient {
   ingredientName: string;
@@ -52,7 +52,8 @@ function RecommendScreen() {
 
   // DB registration
   const handleTakeIt = async (recipe: Recipe) => {
-    console.log(recipe.recipeName);
+    // console.log(recipe.recipeName);
+    // console.log(GRAPHURL);
     const addRecipeMutation = `mutation createRecipe($recipeName: String!, $genreOfMeal: String, $typeOfMeal: MealType, $instructions: String, $suggestions: String,$dateTaken: Date){
         createRecipe(recipeName: $recipeName,genreOfMeal: $genreOfMeal,typeOfMeal: $typeOfMeal,instructions: $instructions,suggestions: $suggestions,dateTaken: $dateTaken) {
           recipeName,genreOfMeal,typeOfMeal,instructions,suggestions,dateTaken
@@ -60,7 +61,7 @@ function RecommendScreen() {
       }`;
     try {
       const response = await axios({
-        url: "http://192.168.1.64:5500/graphql",
+        url: `${GRAPHURL}`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   TouchableWithoutFeedback,
@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import Ingredient from "../components/findRecipe/Ingredient";
 import TypeOfMeal from "../components/findRecipe/TypeOfMeal";
 import TimeRange from "../components/findRecipe/TimeRange";
-import Btn from "../components/Btn";
+import Btn from "../components/btn";
 import OpenAI from "openai";
 import { EXPO_OPENAI_API_KEY } from "@env";
 
